@@ -6,7 +6,7 @@ import { addItem } from  './actions/items';
 class App extends Component {
 
   handleOnClick() {
-    this.props.store.dispatch(addItem());
+    this.props.addItem();
   }
 
   render() {
@@ -21,10 +21,26 @@ class App extends Component {
   }
 };
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.items
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     items: state.items
+//   };
+// };
 
-export default connect(mapStateToProps)(App);
+
+
+// just destructure in connect
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addItem: () => {
+//       dispatch(addItem());
+//     }
+//   }
+// }
+
+// export default connect(mapStateToProps, {addItem})(App);
+
+// destructure the state to props 
+// refer to readme to see how you can omit the dispatch in connect and still get dispatch function 
+export default connect(s => {items: s.items}), {addItem}(App);
